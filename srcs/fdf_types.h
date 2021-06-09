@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   fdf_types.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/09 12:42:31 by tmatis            #+#    #+#             */
-/*   Updated: 2021/06/09 13:54:02 by tmatis           ###   ########.fr       */
+/*   Created: 2021/06/09 13:53:04 by tmatis            #+#    #+#             */
+/*   Updated: 2021/06/09 13:53:46 by tmatis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
+#ifndef FDF_TYPES_H
 
-# define FDF_H
+# define FDF_TYPES_H
 
-# include <errno.h>
-# include "../minilibx/mlx.h" 
-# include "../libft/libft.h"
-# include "fdf_types.h"
-# include "graphic_utils/graphic_utils.h"
+typedef	struct	s_frame
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_frame;
+
+typedef	struct	s_rgb
+{
+	int	r;
+	int	g;
+	int	b;
+}				t_rgb;
 
 #endif

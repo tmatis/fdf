@@ -6,7 +6,7 @@
 /*   By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 12:41:51 by tmatis            #+#    #+#             */
-/*   Updated: 2021/06/09 13:23:45 by tmatis           ###   ########.fr       */
+/*   Updated: 2021/06/09 13:54:17 by tmatis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,8 @@
 
 #include "../fdf.h"
 
-typedef	struct	s_frame
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_frame;
-
-typedef	struct	s_rgb
-{
-	int	r;
-	int	g;
-	int	b;
-}				t_rgb;
+t_frame			frame_init(void *mlx, int x, int y);
+void			frame_put_pixel(t_frame f, int x, int y, int color);
+unsigned	int	frame_get_pixel(t_frame f, int x, int y);
 
 #endif

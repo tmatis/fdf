@@ -6,7 +6,7 @@
 /*   By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/04 14:53:42 by tmatis            #+#    #+#             */
-/*   Updated: 2021/06/09 13:40:54 by tmatis           ###   ########.fr       */
+/*   Updated: 2021/06/09 13:42:58 by tmatis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	ft_puterror(char *name, char *location, char *error)
 	ft_putstr_fd(location, STDERR_FILENO);
 	ft_putstr_fd(": ", STDERR_FILENO);
 	ft_putstr_fd(error, STDERR_FILENO);
+	ft_putstr_fd("\n", STDERR_FILENO);
 }
 
 void	ft_putnl(char *str)
