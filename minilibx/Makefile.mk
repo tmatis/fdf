@@ -14,7 +14,7 @@
 INC	=%%%%
 
 
-CC	= gcc
+CC	= clang
 
 NAME		= libmlx.a
 NAME_UNAME	= libmlx_$(shell uname).a
@@ -39,12 +39,12 @@ all	: $(NAME)
 
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(OBJ_DIR)
-	$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@ &> /dev/null
 
 $(NAME)	: $(OBJ)
-	ar -r $(NAME) $(OBJ)
-	ranlib $(NAME)
-	cp $(NAME) $(NAME_UNAME)
+	@ar -r $(NAME) $(OBJ) &> /dev/null
+	@ranlib $(NAME) &> /dev/null
+	@cp $(NAME) $(NAME_UNAME) &> /dev/null
 
 check: all
 	@test/run_tests.sh
