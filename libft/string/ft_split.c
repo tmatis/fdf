@@ -6,7 +6,7 @@
 /*   By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 12:47:33 by tmatis            #+#    #+#             */
-/*   Updated: 2021/05/07 12:47:43 by tmatis           ###   ########.fr       */
+/*   Updated: 2021/06/10 11:14:39 by tmatis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,14 @@ char	**ft_split(char const *s, char c)
 	}
 	dest[i] = NULL;
 	return (dest);
+}
+
+void	free_table(char **table)
+{
+	int	i;
+
+	i = 0;
+	while (table[i])
+		free(table[i++]);
+	free(table);
 }

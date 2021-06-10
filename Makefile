@@ -6,7 +6,7 @@
 #    By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/08 16:38:19 by tmatis            #+#    #+#              #
-#    Updated: 2021/06/09 19:07:21 by tmatis           ###   ########.fr        #
+#    Updated: 2021/06/10 11:23:58 by tmatis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ DATE	= 08/06/2021
 #                                 PROGRAM'S SRCS                               #
 ################################################################################
 
-SRCS		= graphic_utils/image_utils.c graphic_utils/draw.c
+SRCS		= graphic_utils/image_utils.c graphic_utils/draw.c parse_map.c
 
 MAIN		= main.c
 

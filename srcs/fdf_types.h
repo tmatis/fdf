@@ -6,13 +6,15 @@
 /*   By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 13:53:04 by tmatis            #+#    #+#             */
-/*   Updated: 2021/06/09 22:19:26 by tmatis           ###   ########.fr       */
+/*   Updated: 2021/06/10 11:53:30 by tmatis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_TYPES_H
 
 # define FDF_TYPES_H
+
+#include "fdf.h"
 
 typedef struct s_frame
 {
@@ -36,7 +38,9 @@ typedef struct s_dot
 {
 	double	x;
 	double	y;
-	double	height;
+	double	z;
+	int		color;
+	int		end;
 }			t_dot;
 
 typedef struct s_info
@@ -44,6 +48,7 @@ typedef struct s_info
 	void	*mlx;
 	void	*win;
 	t_frame frame;
+	t_list	*map;
 }	t_info;
 
 #endif
