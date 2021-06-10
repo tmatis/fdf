@@ -6,7 +6,7 @@
 /*   By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 13:53:04 by tmatis            #+#    #+#             */
-/*   Updated: 2021/06/10 11:53:30 by tmatis           ###   ########.fr       */
+/*   Updated: 2021/06/10 19:38:22 by tmatis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,13 @@ typedef struct s_rgb
 	int	b;
 }				t_rgb;
 
+typedef struct s_map
+{
+	t_list 		*data;
+	double		x;
+	double		y;
+}			t_map;
+
 typedef struct s_dot
 {
 	double	x;
@@ -48,7 +55,8 @@ typedef struct s_info
 	void	*mlx;
 	void	*win;
 	t_frame frame;
-	t_list	*map;
+	t_map	map;
+	double	zoom;
 }	t_info;
 
 #endif

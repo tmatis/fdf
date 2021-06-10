@@ -6,7 +6,7 @@
 /*   By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 12:42:31 by tmatis            #+#    #+#             */
-/*   Updated: 2021/06/10 11:20:52 by tmatis           ###   ########.fr       */
+/*   Updated: 2021/06/10 18:26:30 by tmatis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,6 @@
 # include "fdf_types.h"
 # include "graphic_utils/graphic_utils.h"
 
-t_list	*parse_map(int map_fd);
+t_map	parse_map(int map_fd);
 
 #endif
