@@ -6,7 +6,7 @@
 /*   By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 12:42:31 by tmatis            #+#    #+#             */
-/*   Updated: 2021/06/10 18:26:30 by tmatis           ###   ########.fr       */
+/*   Updated: 2021/06/10 22:34:05 by tmatis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,7 @@
 # include "graphic_utils/graphic_utils.h"
 
 t_map	parse_map(int map_fd);
+int		event_key(unsigned int key, t_info *info);
+int		event_key_release(unsigned int key, t_info *info);
 
 #endif

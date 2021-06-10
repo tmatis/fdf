@@ -6,7 +6,7 @@
 /*   By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 13:53:04 by tmatis            #+#    #+#             */
-/*   Updated: 2021/06/10 19:38:22 by tmatis           ###   ########.fr       */
+/*   Updated: 2021/06/10 23:01:33 by tmatis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,11 @@ typedef struct s_info
 	t_frame frame;
 	t_map	map;
 	double	zoom;
+	double	gamma;
+	int		plus_key;
+	int		minus_key;
+	int		q_key;
+	int		e_key;
 }	t_info;
 
 #endif

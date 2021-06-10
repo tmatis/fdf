@@ -6,7 +6,7 @@
 /*   By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 22:57:43 by tmatis            #+#    #+#             */
-/*   Updated: 2021/06/10 18:31:01 by tmatis           ###   ########.fr       */
+/*   Updated: 2021/06/10 22:26:43 by tmatis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_dot	*line_array(char *line, t_map *map)
 		array[split_size].x = split_size;
 		array[split_size].y = map->y;
 		array[split_size].z = ft_atoi(split[split_size]);
-		if (array[split_size].z)
+		if (0 && array[split_size].z)
 			array[split_size].color = 0xfc0f03;
 		else
 			array[split_size].color = 0xFFFFFFF;

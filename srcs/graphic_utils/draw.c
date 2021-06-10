@@ -6,7 +6,7 @@
 /*   By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 17:15:34 by tmatis            #+#    #+#             */
-/*   Updated: 2021/06/09 22:13:53 by tmatis           ###   ########.fr       */
+/*   Updated: 2021/06/10 22:25:55 by tmatis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	draw_line(t_dot start, t_dot end, int color, t_frame frame)
 		frame_put_pixel(frame, start.x, start.y, color);
 		start.x += step_x;
 		start.y += step_y;
-		if (start.x > frame.x || start.y > frame.y || start.y < 0 || start.x < 0)
+		if (start.x > frame.x || start.y > frame.y || start.y < -100 || start.x < -100)
 			break ;
 	}
 }

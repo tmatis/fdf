@@ -6,7 +6,7 @@
 /*   By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 11:07:28 by tmatis            #+#    #+#             */
-/*   Updated: 2021/06/10 19:38:53 by tmatis           ###   ########.fr       */
+/*   Updated: 2021/06/10 23:06:11 by tmatis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,13 +88,13 @@ t_dot	transform_z(t_dot dot, double gamma)
 	return (dot);
 }
 
-t_dot	apply_iso(t_dot dot)
+t_dot	apply_iso(t_dot dot, t_info info)
 {
 	double new_x;
 	double new_y;
 
 	new_x = (dot.x - dot.y) * cos(ISO_ANGLE);
-	new_y = (dot.x + dot.y) * sin(ISO_ANGLE) - (dot.z * 10);
+	new_y = (dot.x + dot.y) * sin(ISO_ANGLE) - (dot.z * (info.zoom / 5));
 	dot.x = new_x;
 	dot.y = new_y;
 	return (dot);
@@ -116,8 +116,8 @@ t_dot	compute_position(t_dot dot, t_info info)
 {
 	dot.x = dot.x * info.zoom - (info.map.x * info.zoom) / 2;
 	dot.y = dot.y * info.zoom - (info.map.y * info.zoom) / 2;
-	dot = apply_iso(dot);
-	//dot = transform_z(dot, 0.3);
+	dot = transform_z(dot, info.gamma);
+	dot = apply_iso(dot, info);
 	dot = compute_center(dot, info);
 	return (dot);
 }
@@ -151,29 +151,49 @@ int	compute_zoom(t_map map, t_frame frame)
 	int	zoom_value_x;
 	int	zoom_value_y;
 
-	zoom_value_x = frame.x / map.x / 1.2;
-	zoom_value_y = frame.y / map.y / 1.2;
+	zoom_value_x = frame.x / map.x / 2;
+	zoom_value_y = frame.y / map.y / 2;
 	if (zoom_value_y > zoom_value_x)
 		return (zoom_value_x);
 	else
 		return (zoom_value_y);
 }
 
-int	render(void *p_info)
+void	key_handle(t_info *info)
+{
+	if (info->plus_key)
+		info->zoom += 0.5;
+	if (info->minus_key && (info->zoom - 2) > 0)
+		info->zoom -= 0.5;
+	if (info->e_key)
+		info->gamma += 0.02;
+	if (info->q_key)
+		info->gamma -= 0.02;
+}
+
+int	render(t_info *info)
 {
 	t_dot	start;
 	t_dot	end;
-	t_info	info;
 
-	info = *(t_info *)p_info;
 	start.x = 0;
 	start.y = 0;
-	end.x = 1000;
-	end.y = 700;
-	draw_square(start, end, 0x0, info.frame);
-	render_lines(info);
-	mlx_put_image_to_window(info.mlx, info.win, info.frame.img, 0, 0);
+	end.x = info->frame.x;
+	end.y = info->frame.y;
+	key_handle(info);
+	draw_square(start, end, 0x0, info->frame);
+	render_lines(*info);
+	mlx_put_image_to_window(info->mlx, info->win, info->frame.img, 0, 0);
 	return (0);
+}
+
+void	init_values(t_info *info)
+{
+	info->plus_key = 0;
+	info->minus_key = 0;
+	info->q_key = 0;
+	info->e_key = 0;
+	info->gamma = 0.0;
 }
 
 void	graphic(t_map map)
@@ -186,7 +206,7 @@ void	graphic(t_map map)
 		ft_puterror("fdf", "mlx_init", strerror(errno));
 		exit(1);
 	}
-	info.win = mlx_new_window(info.mlx, 1000, 700, "FdF");
+	info.win = mlx_new_window(info.mlx, 1200, 700, "FdF");
 	if (!info.win)
 	{
 		ft_puterror("fdf", "mlx_new_window", strerror(errno));
@@ -194,9 +214,12 @@ void	graphic(t_map map)
 		free(info.mlx);
 		exit(1);
 	}
-	info.frame = frame_init(info.mlx, 1000, 700);
+	info.frame = frame_init(info.mlx, 1200, 700);
 	info.map = map;
 	info.zoom = compute_zoom(info.map, info.frame);
+	init_values(&info);
+	mlx_hook(info.win, 2, 1L, event_key, &info);
+	mlx_hook(info.win, 3, 1L << 1, event_key_release, &info);
 	mlx_loop_hook(info.mlx, render, &info);
 	mlx_loop(info.mlx);
 }
