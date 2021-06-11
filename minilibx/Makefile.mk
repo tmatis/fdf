@@ -39,12 +39,12 @@ all	: $(NAME)
 
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@ &> /dev/null
+	$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
 
 $(NAME)	: $(OBJ)
-	@ar -r $(NAME) $(OBJ) &> /dev/null
-	@ranlib $(NAME) &> /dev/null
-	@cp $(NAME) $(NAME_UNAME) &> /dev/null
+	ar -r $(NAME) $(OBJ)
+	ranlib $(NAME)
+	cp $(NAME) $(NAME_UNAME)
 
 check: all
 	@test/run_tests.sh
