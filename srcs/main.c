@@ -6,13 +6,12 @@
 /*   By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 11:07:28 by tmatis            #+#    #+#             */
-/*   Updated: 2021/06/11 19:52:28 by tmatis           ###   ########.fr       */
+/*   Updated: 2021/06/11 20:08:22 by tmatis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <fcntl.h>
-#include <math.h>
 
 int	load_file(char *file)
 {
@@ -44,78 +43,6 @@ int	exit_free(t_info *info)
 	free(info->mlx);
 	exit(0);
 	return (1);
-}
-
-/*
-** dot: the dot to transform, alpha the angle in radian
-*/
-t_dot	transform_x(t_dot dot, double alpha)
-{
-	double	new_x;
-	double	new_y;
-	double	new_z;
-
-	new_x = dot.x;
-	new_y = dot.y * cos(alpha) + dot.z * sin(alpha);
-	new_z = - dot.y * sin(alpha) + dot.z * cos(alpha);
-	dot.x = new_x;
-	dot.y = new_y;
-	dot.z = new_z;
-	return (dot);
-}
-
-t_dot	transform_y(t_dot dot, double beta)
-{
-	double	new_x;
-	double	new_y;
-	double	new_z;
-
-	new_x = dot.x * cos(beta) + dot.z * sin(beta);
-	new_y = dot.y;
-	new_z = - dot.x * sin(beta) + dot.z * cos(beta);
-	dot.x = new_x;
-	dot.y = new_y;
-	dot.z = new_z;
-	return (dot);
-}
-
-t_dot	transform_z(t_dot dot, double gamma)
-{
-	double	new_x;
-	double	new_y;
-	double	new_z;
-
-	new_x = dot.x * cos(gamma) - dot.y * sin(gamma);
-	new_y = dot.x * sin(gamma) + dot.y * cos(gamma);
-	new_z = dot.z;
-	dot.x = new_x;
-	dot.y = new_y;
-	dot.z = new_z;
-	return (dot);
-}
-
-t_dot	compute_center(t_dot dot, t_info info)
-{
-	int	offset_x;
-	int	offset_y;
-
-	offset_x = info.frame.x / 2 + info.offset_x - (100 * info.menu_toggle);
-	offset_y = info.frame.y / 2 + info.offset_y;
-	dot.x += offset_x;
-	dot.y += offset_y;
-	return (dot);
-}
-
-t_dot	compute_position(t_dot dot, t_info info)
-{
-	dot.x = dot.x * info.zoom - (info.map.x * info.zoom) / 2;
-	dot.y = dot.y * info.zoom - (info.map.y * info.zoom) / 2;
-	dot.z *= info.zoom * info.coef_z;
-	dot = transform_x(dot, info.alpha);
-	dot = transform_y(dot, info.beta);
-	dot = transform_z(dot, info.gamma);
-	dot = compute_center(dot, info);
-	return (dot);
 }
 
 void	render_lines(t_info info)
@@ -157,38 +84,6 @@ int	compute_zoom(t_map map, t_frame frame)
 	if (selected_zoom < 2)
 		return (2);
 	return (selected_zoom);
-}
-
-void	key_handle(t_info *info)
-{
-	if (info->plus_key && (info->zoom + info->zoom/50) < 250)
-		info->zoom += info->zoom / 50;
-	if (info->minus_key && (info->zoom - info->zoom/50) > 2)
-		info->zoom -= info->zoom / 50;
-	if (info->e_key)
-		info->gamma += 0.02;
-	if (info->q_key)
-		info->gamma -= 0.02;
-	if (info->w_key)
-		info->offset_y -= 1.8;
-	if (info->s_key)
-		info->offset_y += 1.8;
-	if (info->a_key)
-		info->offset_x -= 1.8;
-	if (info->d_key)
-		info->offset_x += 1.8;
-	if (info->up_arrow_key)
-		info->alpha += 0.02;
-	if (info->down_arrow_key)
-		info->alpha -= 0.02;
-	if (info->left_arrow_key)
-		info->beta += 0.02;
-	if (info->right_arrow_key)
-		info->beta -= 0.02;
-	if (info->c_key && (info->coef_z - 0.1) >= 0)
-		info->coef_z -= 0.01;
-	if (info->v_key)
-		info->coef_z += 0.01;
 }
 
 int	render(t_info *info)

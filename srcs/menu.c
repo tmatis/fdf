@@ -6,14 +6,11 @@
 /*   By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 14:24:30 by tmatis            #+#    #+#             */
-/*   Updated: 2021/06/11 19:28:27 by tmatis           ###   ########.fr       */
+/*   Updated: 2021/06/11 20:01:35 by tmatis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-#define KEY_CHAR_X 13
-#define KEY_CHAR_Y 20
 
 void		draw_key_frame(int x, int y, t_frame frame)
 {
@@ -35,7 +32,7 @@ void		draw_key_frame(int x, int y, t_frame frame)
 void	draw_key_text(int x, int y, char *key, t_info info)
 {
 	mlx_string_put(info.mlx, info.win,
-		x + KEY_CHAR_X, y + KEY_CHAR_Y, 0xFFFFFF, key);
+		x + 13, y + 20, 0xFFFFFF, key);
 }
 
 void	put_text_center(char *str, int y, int color, t_info info)
