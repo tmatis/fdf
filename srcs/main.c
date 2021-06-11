@@ -6,18 +6,13 @@
 /*   By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 11:07:28 by tmatis            #+#    #+#             */
-/*   Updated: 2021/06/11 17:09:42 by tmatis           ###   ########.fr       */
+/*   Updated: 2021/06/11 19:52:28 by tmatis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <fcntl.h>
 #include <math.h>
-
-#define H_OFFSET 300
-#define V_OFFSET 100
-#define ISO_ANGLE 0.523599
-
 
 int	load_file(char *file)
 {
@@ -39,6 +34,17 @@ int	load_file(char *file)
 	return (map_file);
 }
 
+int	exit_free(t_info *info)
+{
+	ft_lstclear(&info->map.data, ft_safe_free);
+	mlx_destroy_image(info->mlx, info->frame.img);
+	mlx_destroy_image(info->mlx, info->menu_frame.img);
+	mlx_destroy_window(info->mlx, info->win);
+	mlx_destroy_display(info->mlx);
+	free(info->mlx);
+	exit(0);
+	return (1);
+}
 
 /*
 ** dot: the dot to transform, alpha the angle in radian
@@ -93,7 +99,7 @@ t_dot	compute_center(t_dot dot, t_info info)
 	int	offset_x;
 	int	offset_y;
 
-	offset_x = info.frame.x / 2 + info.offset_x;
+	offset_x = info.frame.x / 2 + info.offset_x - (100 * info.menu_toggle);
 	offset_y = info.frame.y / 2 + info.offset_y;
 	dot.x += offset_x;
 	dot.y += offset_y;
@@ -164,13 +170,13 @@ void	key_handle(t_info *info)
 	if (info->q_key)
 		info->gamma -= 0.02;
 	if (info->w_key)
-		info->offset_y += 1.8;
-	if (info->s_key)
 		info->offset_y -= 1.8;
+	if (info->s_key)
+		info->offset_y += 1.8;
 	if (info->a_key)
-		info->offset_x += 1.8;
-	if (info->d_key)
 		info->offset_x -= 1.8;
+	if (info->d_key)
+		info->offset_x += 1.8;
 	if (info->up_arrow_key)
 		info->alpha += 0.02;
 	if (info->down_arrow_key)
@@ -252,6 +258,7 @@ void	graphic(t_map map)
 	info.zoom = compute_zoom(info.map, info.frame);
 	info.menu_frame = get_menu_frame(info);
 	init_values(&info);
+	mlx_hook(info.win, 33, 0, exit_free, &info);
 	mlx_hook(info.win, 2, 1L, event_key, &info);
 	mlx_hook(info.win, 3, 1L << 1, event_key_release, &info);
 	mlx_loop_hook(info.mlx, render, &info);

@@ -6,21 +6,11 @@
 /*   By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 22:28:34 by tmatis            #+#    #+#             */
-/*   Updated: 2021/06/11 17:12:10 by tmatis           ###   ########.fr       */
+/*   Updated: 2021/06/11 19:52:05 by tmatis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-void	dump_info(t_info info)
-{
-	printf("---INFO---\n");
-	printf("alpha: %f\n", info.alpha);
-	printf("beta: %f\n", info.beta);
-	printf("gamma: %f\n", info.gamma);
-	printf("zoom: %f\n", info.zoom);
-	printf("coef_z: %f\n", info.coef_z);
-}
 
 void	front_projection(t_info *info)
 {
@@ -91,8 +81,8 @@ int	event_key(unsigned int key, t_info *info)
 		if (info->menu_toggle)
 			info->render_menu = 1;
 	}
-	else
-		printf("key : %#x\n", key);	
+	else if (key == 0xff1b)
+		exit_free(info);
 	return (0);
 }
 

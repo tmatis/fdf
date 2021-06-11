@@ -6,7 +6,7 @@
 /*   By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 14:24:30 by tmatis            #+#    #+#             */
-/*   Updated: 2021/06/11 17:55:11 by tmatis           ###   ########.fr       */
+/*   Updated: 2021/06/11 19:28:27 by tmatis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,15 @@ t_frame		get_menu_frame(t_info info)
 	draw_key_frame(45, 240, menu_frame);
 	draw_key_frame(85, 240, menu_frame);
 	draw_key_frame(125, 240, menu_frame);
+	draw_key_frame(125, 315, menu_frame);
+	draw_key_frame(45, 315, menu_frame);
+	draw_key_frame(45, 400, menu_frame);
+	draw_key_frame(125, 400, menu_frame);
+	draw_key_frame(35, 485, menu_frame);
+	draw_key_frame(35, 525, menu_frame);
+	draw_key_frame(35, 565, menu_frame);
+	draw_key_frame(35, 630, menu_frame);
+	draw_key_frame(35, 670, menu_frame);
 	return (menu_frame);
 }
 
@@ -78,10 +87,27 @@ void	put_menu_text(t_info info)
 	draw_key_text(45, 130, "A", info);
 	draw_key_text(85, 130, "S", info);
 	draw_key_text(125, 130, "S", info);
+	put_text_center("Rotate", 185, 0xFFFFFF, info);
 	draw_key_text(85, 200, "^", info);
 	draw_key_text(45, 240, "<", info);
 	draw_key_text(85, 240, "v", info);
 	draw_key_text(125, 240, ">", info);
-	put_text_center("Rotate", 185, 0xFFFFFF, info);
-
+	put_text_center("Zoom", 300, 0xFFFFFF, info);
+	draw_key_text(125, 315, "-", info);
+	draw_key_text(45, 315, "+", info);
+	put_text_center("Z_factor (- / +)", 375, 0xFFFFFF, info);
+	draw_key_text(125, 400, "V", info);
+	draw_key_text(45, 400, "C", info);
+	put_text_center("Views", 460, 0xFFFFFF, info);
+	draw_key_text(35, 485, "I", info);
+	mlx_string_put(info.mlx, info.win, 75, 505, 0xFFFFFF, "isometric view");
+	draw_key_text(35, 525, "F", info);
+	mlx_string_put(info.mlx, info.win, 75, 545, 0xFFFFFF, "front view");
+	draw_key_text(35, 565, "P", info);
+	mlx_string_put(info.mlx, info.win, 75, 585, 0xFFFFFF, "plain view");
+	put_text_center("Others", 625, 0xFFFFFF, info);
+	draw_key_text(29, 630, "Esc", info);
+	mlx_string_put(info.mlx, info.win, 75, 650, 0xFFFFFF, "quit the program");
+	draw_key_text(35, 670, "H", info);
+	mlx_string_put(info.mlx, info.win, 75, 690, 0xFFFFFF, "show/hide help menu");
 }

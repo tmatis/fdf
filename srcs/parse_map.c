@@ -6,7 +6,7 @@
 /*   By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 22:57:43 by tmatis            #+#    #+#             */
-/*   Updated: 2021/06/10 22:26:43 by tmatis           ###   ########.fr       */
+/*   Updated: 2021/06/11 19:44:48 by tmatis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,11 @@ t_map	parse_map(int map_fd)
 		gnl_ret = get_next_line(map_fd, &line);
 		map.y++;
 	}
+	ft_safe_free(line);
 	if (gnl_ret < 0)
 	{
 		ft_lstclear(&map.data, free);
+		exit(1);
 	}
 	return (map);
 }
