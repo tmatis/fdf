@@ -6,7 +6,7 @@
 /*   By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 13:53:04 by tmatis            #+#    #+#             */
-/*   Updated: 2021/06/11 12:36:45 by tmatis           ###   ########.fr       */
+/*   Updated: 2021/06/11 17:08:42 by tmatis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,9 @@ typedef struct s_info
 	void	*mlx;
 	void	*win;
 	t_frame frame;
+	t_frame	menu_frame;
+	int		render_menu;
+	int		menu_toggle;
 	t_map	map;
 	double	zoom;
 	double	gamma;

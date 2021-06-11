@@ -6,7 +6,7 @@
 /*   By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 22:28:34 by tmatis            #+#    #+#             */
-/*   Updated: 2021/06/11 14:17:51 by tmatis           ###   ########.fr       */
+/*   Updated: 2021/06/11 17:12:10 by tmatis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,17 @@ void	front_projection(t_info *info)
 	info->alpha = -0.74;
 	info->beta = 0.0;
 	info->gamma = 0.0;
-	info->zoom = 31;
 	info->offset_x = 0;
 	info->offset_y = 0;
+}
+
+void	flat_projection(t_info *info)
+{
+	info->alpha = 0;
+	info->beta = 0;
+	info->gamma = 0;
+	info->offset_y = 0;
+	info->offset_x = 0;
 }
 
 void	iso_projection(t_info *info)
@@ -37,7 +45,6 @@ void	iso_projection(t_info *info)
 	info->alpha = -0.88;
 	info->beta = -0.68;
 	info->gamma = 0.38;
-	info->zoom = 31;
 	info->offset_x = 0;
 	info->offset_y = 0;
 }
@@ -76,6 +83,14 @@ int	event_key(unsigned int key, t_info *info)
 		front_projection(info);
 	else if (key == 0x69)
 		iso_projection(info);
+	else if (key == 0x70)
+		flat_projection(info);
+	else if (key == 0x68)
+	{
+		info->menu_toggle = !info->menu_toggle;
+		if (info->menu_toggle)
+			info->render_menu = 1;
+	}
 	else
 		printf("key : %#x\n", key);	
 	return (0);
