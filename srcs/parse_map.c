@@ -6,11 +6,24 @@
 /*   By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 22:57:43 by tmatis            #+#    #+#             */
-/*   Updated: 2021/06/11 20:45:44 by tmatis           ###   ########.fr       */
+/*   Updated: 2021/06/11 21:38:51 by tmatis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+unsigned int	get_color(char *str)
+{
+	while (ft_isnum(*str))
+		str++;
+	if (!*str)
+		return (0xFFFFFF);
+	if (ft_strlen(str) >= 3 && !ft_memcmp(str, ",0x", 3))
+		str += 3;
+	else
+		return (0xFFFFFF);
+	return (ft_atoi_hex(str));
+}
 
 t_dot	*line_array(char *line, t_map *map)
 {
@@ -33,7 +46,7 @@ t_dot	*line_array(char *line, t_map *map)
 		array[split_size].x = split_size;
 		array[split_size].y = map->y;
 		array[split_size].z = ft_atoi(split[split_size]);
-		array[split_size].color = 0xFFFFFFF;
+		array[split_size].color = get_color(split[split_size]);
 	}
 	free_table(split);
 	return (array);

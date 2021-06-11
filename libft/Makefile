@@ -6,7 +6,7 @@
 #    By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/08 16:38:19 by tmatis            #+#    #+#              #
-#    Updated: 2021/05/29 22:04:34 by jmazoyer         ###   ########.fr        #
+#    Updated: 2021/06/11 21:25:48 by tmatis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SRCS_LST		= ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c \
 SRCS_MEMORY		= ft_bzero.c ft_memccpy.c ft_memcmp.c ft_memmove.c \
 				  ft_realloc.c ft_calloc.c ft_memchr.c ft_memcpy.c ft_memset.c
 
-SRCS_MISC		= ft_atoi.c ft_itoa.c
+SRCS_MISC		= ft_atoi.c ft_itoa.c ft_atoi_hex.c
 
 SRCS_PUT		= ft_putchar_fd.c ft_putnbr_fd.c ft_putstr_fd.c \
 				  ft_putendl_fd.c ft_putstr.c ft_putwstr_fd.c

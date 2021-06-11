@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   misc.h                                             :+:      :+:    :+:   */
+/*   render_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/04 15:49:57 by tmatis            #+#    #+#             */
-/*   Updated: 2021/06/11 21:25:20 by tmatis           ###   ########.fr       */
+/*   Created: 2021/06/11 21:48:20 by tmatis            #+#    #+#             */
+/*   Updated: 2021/06/11 21:55:31 by tmatis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MISC_H
+#include "fdf.h"
 
-# define MISC_H
-
-int				ft_atoi(const char *str);
-char			*ft_itoa(int n);
-unsigned int	ft_atoi_hex(const char *str);
-
-#endif
+unsigned int	choose_color(t_dot a, t_dot b)
+{
+	if (a.color != 0xFFFFFF)
+		return (a.color);
+	else
+		return (b.color);
+}

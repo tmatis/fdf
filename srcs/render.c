@@ -6,7 +6,7 @@
 /*   By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 20:11:25 by tmatis            #+#    #+#             */
-/*   Updated: 2021/06/11 20:43:28 by tmatis           ###   ########.fr       */
+/*   Updated: 2021/06/11 21:55:55 by tmatis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,13 @@ void	render_lines(t_info inf)
 			if (!raw[i + 1].end)
 				draw_line(compute_position(raw[i], inf),
 					compute_position(raw[i + 1], inf),
-					raw[i + 1].color, inf.frame);
+					choose_color(raw[i], raw[i + 1]), inf.frame);
 			if (inf.map.data->next)
 				draw_line(compute_position(raw[i], inf),
 					compute_position(((t_dot *)inf.map.data->next->content)[i],
 						inf),
-					((t_dot *)inf.map.data->next->content)[i].color,
+					choose_color(raw[i],
+						((t_dot *)inf.map.data->next->content)[i]),
 					inf.frame);
 			i++;
 		}
