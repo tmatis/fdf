@@ -6,7 +6,7 @@
 /*   By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 13:53:04 by tmatis            #+#    #+#             */
-/*   Updated: 2021/06/11 17:08:42 by tmatis           ###   ########.fr       */
+/*   Updated: 2021/06/11 20:35:09 by tmatis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 # define FDF_TYPES_H
 
-#include "fdf.h"
+# include "fdf.h"
 
 typedef struct s_frame
 {
@@ -36,7 +36,7 @@ typedef struct s_rgb
 
 typedef struct s_map
 {
-	t_list 		*data;
+	t_list		*data;
 	double		x;
 	double		y;
 }			t_map;
@@ -54,7 +54,7 @@ typedef struct s_info
 {
 	void	*mlx;
 	void	*win;
-	t_frame frame;
+	t_frame	frame;
 	t_frame	menu_frame;
 	int		render_menu;
 	int		menu_toggle;

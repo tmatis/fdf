@@ -6,7 +6,7 @@
 /*   By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 20:07:07 by tmatis            #+#    #+#             */
-/*   Updated: 2021/06/11 20:07:55 by tmatis           ###   ########.fr       */
+/*   Updated: 2021/06/11 20:30:12 by tmatis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ void	key_handle_2(t_info *info)
 	if (info->c_key && (info->coef_z - 0.1) >= 0)
 		info->coef_z -= 0.01;
 	if (info->v_key)
-		info->coef_z += 0.01;	
+		info->coef_z += 0.01;
 }
 
 void	key_handle(t_info *info)
 {
-	if (info->plus_key && (info->zoom + info->zoom/50) < 250)
+	if (info->plus_key && (info->zoom + info->zoom / 50) < 250)
 		info->zoom += info->zoom / 50;
-	if (info->minus_key && (info->zoom - info->zoom/50) > 2)
+	if (info->minus_key && (info->zoom - info->zoom / 50) > 2)
 		info->zoom -= info->zoom / 50;
 	if (info->e_key)
 		info->gamma += 0.02;

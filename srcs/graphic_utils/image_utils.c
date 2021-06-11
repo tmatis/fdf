@@ -6,13 +6,13 @@
 /*   By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 12:41:13 by tmatis            #+#    #+#             */
-/*   Updated: 2021/06/09 22:07:56 by tmatis           ###   ########.fr       */
+/*   Updated: 2021/06/11 20:47:08 by tmatis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "graphic_utils.h"
 
-int		ft_trgb(int t, int r, int g, int b)
+int	ft_trgb(int t, int r, int g, int b)
 {
 	return (t << 24 | r << 16 | g << 8 | b);
 }
@@ -53,7 +53,7 @@ void	frame_put_pixel(t_frame f, int x, int y, int color)
 	if (x < f.x && y < f.y && x >= 0 && y >= 0)
 	{
 		dst = f.addr + (y * f.line_length + x * (f.bits_per_pixel / 8));
-		*(unsigned int*)dst = color;
+		*(unsigned int *)dst = color;
 	}
 }
 
@@ -63,6 +63,7 @@ void	frame_put_pixel(t_frame f, int x, int y, int color)
 unsigned int	frame_get_pixel(t_frame f, int x, int y)
 {
 	char	*dst;
+
 	if (x < f.x && y < f.y && x >= 0 && y >= 0)
 	{
 		dst = f.addr + (y * f.line_length + x * (f.bits_per_pixel / 8));

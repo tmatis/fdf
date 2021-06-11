@@ -6,7 +6,7 @@
 #    By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/08 16:38:19 by tmatis            #+#    #+#              #
-#    Updated: 2021/06/11 14:29:45 by tmatis           ###   ########.fr        #
+#    Updated: 2021/06/11 20:50:04 by tmatis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,8 +28,10 @@ DATE	= 08/06/2021
 #                                 PROGRAM'S SRCS                               #
 ################################################################################
 
-SRCS		=	graphic_utils/image_utils.c graphic_utils/draw.c parse_map.c \
-				key_event.c menu.c
+SRCS		=	graphic_utils/image_utils.c graphic_utils/draw.c \
+				key_event.c key_handle.c menu.c menu_utils.c \
+				parse_map.c projection.c  render.c transform.c
+
 
 MAIN		= main.c
 

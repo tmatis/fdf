@@ -6,7 +6,7 @@
 /*   By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 19:57:28 by tmatis            #+#    #+#             */
-/*   Updated: 2021/06/11 19:58:16 by tmatis           ###   ########.fr       */
+/*   Updated: 2021/06/11 20:28:34 by tmatis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_dot	transform_x(t_dot dot, double alpha)
 
 	new_x = dot.x;
 	new_y = dot.y * cos(alpha) + dot.z * sin(alpha);
-	new_z = - dot.y * sin(alpha) + dot.z * cos(alpha);
+	new_z = -dot.y * sin(alpha) + dot.z * cos(alpha);
 	dot.x = new_x;
 	dot.y = new_y;
 	dot.z = new_z;
@@ -39,7 +39,7 @@ t_dot	transform_y(t_dot dot, double beta)
 
 	new_x = dot.x * cos(beta) + dot.z * sin(beta);
 	new_y = dot.y;
-	new_z = - dot.x * sin(beta) + dot.z * cos(beta);
+	new_z = -dot.x * sin(beta) + dot.z * cos(beta);
 	dot.x = new_x;
 	dot.y = new_y;
 	dot.z = new_z;

@@ -6,7 +6,7 @@
 /*   By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 22:57:43 by tmatis            #+#    #+#             */
-/*   Updated: 2021/06/11 19:44:48 by tmatis           ###   ########.fr       */
+/*   Updated: 2021/06/11 20:45:44 by tmatis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,7 @@ t_dot	*line_array(char *line, t_map *map)
 		split_size++;
 	array = ft_calloc(split_size + 1, sizeof(t_dot));
 	if (!array)
-	{
-		ft_puterror("fdf", "line_array", strerror(errno));
-		return (NULL);
-	}
+		exit(127);
 	if (split_size > map->x)
 		map->x = split_size;
 	array[split_size].end = 1;
@@ -36,10 +33,7 @@ t_dot	*line_array(char *line, t_map *map)
 		array[split_size].x = split_size;
 		array[split_size].y = map->y;
 		array[split_size].z = ft_atoi(split[split_size]);
-		if (0 && array[split_size].z)
-			array[split_size].color = 0xfc0f03;
-		else
-			array[split_size].color = 0xFFFFFFF;
+		array[split_size].color = 0xFFFFFFF;
 	}
 	free_table(split);
 	return (array);
@@ -50,7 +44,6 @@ t_map	parse_map(int map_fd)
 	int		gnl_ret;
 	char	*line;
 	t_map	map;
-
 
 	map.y = 0;
 	map.x = 0;

@@ -6,7 +6,7 @@
 /*   By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 22:28:34 by tmatis            #+#    #+#             */
-/*   Updated: 2021/06/11 20:06:26 by tmatis           ###   ########.fr       */
+/*   Updated: 2021/06/11 20:29:24 by tmatis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	event_key(unsigned int key, t_info *info)
 
 void	event_key_release_2(unsigned int key, t_info *info)
 {
- 	if (key == 0x64)
+	if (key == 0x64)
 		info->d_key = 0;
 	else if (key == 0xff52)
 		info->up_arrow_key = 0;
@@ -82,7 +82,6 @@ void	event_key_release_2(unsigned int key, t_info *info)
 	else if (key == 0x76)
 		info->v_key = 0;
 }
-
 
 int	event_key_release(unsigned int key, t_info *info)
 {
