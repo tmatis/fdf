@@ -6,7 +6,7 @@
 /*   By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 11:07:28 by tmatis            #+#    #+#             */
-/*   Updated: 2021/06/10 23:06:11 by tmatis           ###   ########.fr       */
+/*   Updated: 2021/06/11 14:15:12 by tmatis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,25 +88,13 @@ t_dot	transform_z(t_dot dot, double gamma)
 	return (dot);
 }
 
-t_dot	apply_iso(t_dot dot, t_info info)
-{
-	double new_x;
-	double new_y;
-
-	new_x = (dot.x - dot.y) * cos(ISO_ANGLE);
-	new_y = (dot.x + dot.y) * sin(ISO_ANGLE) - (dot.z * (info.zoom / 5));
-	dot.x = new_x;
-	dot.y = new_y;
-	return (dot);
-}
-
 t_dot	compute_center(t_dot dot, t_info info)
 {
 	int	offset_x;
 	int	offset_y;
 
-	offset_x = info.frame.x / 2;
-	offset_y = info.frame.y / 2;
+	offset_x = info.frame.x / 2 + info.offset_x;
+	offset_y = info.frame.y / 2 + info.offset_y;
 	dot.x += offset_x;
 	dot.y += offset_y;
 	return (dot);
@@ -116,8 +104,10 @@ t_dot	compute_position(t_dot dot, t_info info)
 {
 	dot.x = dot.x * info.zoom - (info.map.x * info.zoom) / 2;
 	dot.y = dot.y * info.zoom - (info.map.y * info.zoom) / 2;
+	dot.z *= info.zoom * info.coef_z;
+	dot = transform_x(dot, info.alpha);
+	dot = transform_y(dot, info.beta);
 	dot = transform_z(dot, info.gamma);
-	dot = apply_iso(dot, info);
 	dot = compute_center(dot, info);
 	return (dot);
 }
@@ -150,25 +140,49 @@ int	compute_zoom(t_map map, t_frame frame)
 {
 	int	zoom_value_x;
 	int	zoom_value_y;
+	int	selected_zoom;
 
 	zoom_value_x = frame.x / map.x / 2;
 	zoom_value_y = frame.y / map.y / 2;
 	if (zoom_value_y > zoom_value_x)
-		return (zoom_value_x);
+		 selected_zoom = zoom_value_x;
 	else
-		return (zoom_value_y);
+		selected_zoom = zoom_value_y;
+	if (selected_zoom < 2)
+		return (2);
+	return (selected_zoom);
 }
 
 void	key_handle(t_info *info)
 {
-	if (info->plus_key)
-		info->zoom += 0.5;
-	if (info->minus_key && (info->zoom - 2) > 0)
-		info->zoom -= 0.5;
+	if (info->plus_key && (info->zoom + info->zoom/50) < 250)
+		info->zoom += info->zoom / 50;
+	if (info->minus_key && (info->zoom - info->zoom/50) > 2)
+		info->zoom -= info->zoom / 50;
 	if (info->e_key)
 		info->gamma += 0.02;
 	if (info->q_key)
 		info->gamma -= 0.02;
+	if (info->w_key)
+		info->offset_y += 1.8;
+	if (info->s_key)
+		info->offset_y -= 1.8;
+	if (info->a_key)
+		info->offset_x += 1.8;
+	if (info->d_key)
+		info->offset_x -= 1.8;
+	if (info->up_arrow_key)
+		info->alpha += 0.02;
+	if (info->down_arrow_key)
+		info->alpha -= 0.02;
+	if (info->left_arrow_key)
+		info->beta += 0.02;
+	if (info->right_arrow_key)
+		info->beta -= 0.02;
+	if (info->c_key && (info->coef_z - 0.1) >= 0)
+		info->coef_z -= 0.01;
+	if (info->v_key)
+		info->coef_z += 0.01;
 }
 
 int	render(t_info *info)
@@ -193,7 +207,22 @@ void	init_values(t_info *info)
 	info->minus_key = 0;
 	info->q_key = 0;
 	info->e_key = 0;
-	info->gamma = 0.0;
+	info->w_key = 0;
+	info->s_key = 0;
+	info->a_key = 0;
+	info->d_key = 0;
+	info->c_key = 0;
+	info->v_key = 0;
+	info->down_arrow_key = 0;
+	info->up_arrow_key = 0;
+	info->left_arrow_key = 0;
+	info->right_arrow_key = 0;
+	info->offset_x = 0;
+	info->offset_y = 0;
+	info->gamma = 0;
+	info->alpha = 0;
+	info->beta = 0;
+	info->coef_z = 0.25;
 }
 
 void	graphic(t_map map)

@@ -6,7 +6,7 @@
 /*   By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 13:53:04 by tmatis            #+#    #+#             */
-/*   Updated: 2021/06/10 23:01:33 by tmatis           ###   ########.fr       */
+/*   Updated: 2021/06/11 12:36:45 by tmatis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,25 @@ typedef struct s_info
 	t_map	map;
 	double	zoom;
 	double	gamma;
+	double	alpha;
+	double	beta;
+	double	offset_x;
+	double	offset_y;
+	double	coef_z;
 	int		plus_key;
 	int		minus_key;
 	int		q_key;
 	int		e_key;
+	int		w_key;
+	int		a_key;
+	int		s_key;
+	int		d_key;
+	int		up_arrow_key;
+	int		down_arrow_key;
+	int		left_arrow_key;
+	int		right_arrow_key;
+	int		c_key;
+	int		v_key;
 }	t_info;
 
 #endif
