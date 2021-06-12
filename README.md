@@ -1,3 +1,3 @@
 # fdf
 42 FDF
-![1200px-Eulerangles svg](https://user-images.githubusercontent.com/54767855/121538075-c93f9780-ca04-11eb-89bd-c25193d459c1.png)
+![image](https://user-images.githubusercontent.com/54767855/121780799-350b3700-cba2-11eb-8603-93a980e3d8b7.png)
