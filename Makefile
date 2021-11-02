@@ -6,7 +6,7 @@
 #    By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/08 16:38:19 by tmatis            #+#    #+#              #
-#    Updated: 2021/06/11 21:53:47 by tmatis           ###   ########.fr        #
+#    Updated: 2021/11/02 14:39:57 by tmatis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -121,6 +121,9 @@ fclean:		header clean
 			@rm -rf $(NAME) ./test ./malloc_check
 			@make -sC ./libft fclean
 			@printf "%-53b%b" "$(COM_COLOR)fclean:" "$(OK_COLOR)$(OK_STRING)$(NO_COLOR)\n"
+
+malloc_test: $(LIBFT) $(LIBMLX) ${OBJS} ${OBJ_MAIN}
+			$(CC) $(CFLAGS)  -fsanitize=undefined -rdynamic -o $@ ${OBJS} ${OBJ_MAIN} $(LIBFLAG) -L. -lmallocator
 
 re:			fclean all
 

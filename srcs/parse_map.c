@@ -6,7 +6,7 @@
 /*   By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 22:57:43 by tmatis            #+#    #+#             */
-/*   Updated: 2021/06/11 21:38:51 by tmatis           ###   ########.fr       */
+/*   Updated: 2021/11/02 15:00:07 by tmatis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,17 @@ t_dot	*line_array(char *line, t_map *map)
 	t_dot	*array;
 
 	split = ft_split(line, ' ');
+	if (!split)
+		return (NULL);
 	split_size = 0;
 	while (split[split_size])
 		split_size++;
 	array = ft_calloc(split_size + 1, sizeof(t_dot));
 	if (!array)
-		exit(127);
+	{
+		free_table(split);
+		return (NULL);
+	}
 	if (split_size > map->x)
 		map->x = split_size;
 	array[split_size].end = 1;
@@ -65,7 +70,22 @@ t_map	parse_map(int map_fd)
 	gnl_ret = get_next_line(map_fd, &line);
 	while (gnl_ret > 0)
 	{
-		ft_lstadd_back(&map.data, ft_lstnew(line_array(line, &map)));
+		t_dot *tmp = line_array(line, &map);
+		if (!tmp)
+		{
+			ft_lstclear(&map.data, ft_safe_free);
+			free(line);
+			exit(127);
+		}
+		t_list *new =  ft_lstnew(tmp);
+		if (!new)
+		{
+			free(tmp);
+			ft_lstclear(&map.data, ft_safe_free);
+			free(line);
+			exit(127);
+		}
+		ft_lstadd_back(&map.data, new);
 		free(line);
 		gnl_ret = get_next_line(map_fd, &line);
 		map.y++;

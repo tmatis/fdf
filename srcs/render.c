@@ -6,7 +6,7 @@
 /*   By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 20:11:25 by tmatis            #+#    #+#             */
-/*   Updated: 2021/06/11 21:55:55 by tmatis           ###   ########.fr       */
+/*   Updated: 2021/11/02 14:46:58 by tmatis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,12 +112,14 @@ void	graphic(t_map map)
 	if (!info.mlx)
 	{
 		ft_puterror("fdf", "mlx_init", strerror(errno));
+		ft_lstclear(&map.data, ft_safe_free);
 		exit(1);
 	}
 	info.win = mlx_new_window(info.mlx, 1200, 700, "FdF");
 	if (!info.win)
 	{
 		ft_puterror("fdf", "mlx_new_window", strerror(errno));
+		ft_lstclear(&map.data, ft_safe_free);
 		mlx_destroy_display(info.mlx);
 		free(info.mlx);
 		exit(1);
